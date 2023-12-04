@@ -2,7 +2,7 @@ import React from 'react'
 
 const Headingforreglog = ({Title, className}) => {
   return (
-    <h1 className = {className}> {Title}</h1>
+    <h3 className = {className}> {Title}</h3>
   )
 }
 

@@ -2,7 +2,13 @@
   padding: 0;
   margin: 0;
 }
-
+/*==================================================================================================== 
+                    Registration Part Start
+====================================================================================================*/
+.regContainer{
+margin-top: 50%;
+transform: translateY(-50%);
+}
 .regImg{
   width: 100%;
   height: 100vh;
@@ -10,5 +16,56 @@
 }
 
 .cssforReg{
-  font-size: 33.3px;
+  /* font-size: 19.3px; */
 }
+
+.regInfo{
+  font-family: 'Nunito', sans-serif;
+  /* margin: 150px 0 0 0; */
+}
+
+.regContainer{
+  width: 50%;
+  margin-left: auto;
+  
+}
+
+.textfield{
+  margin: 20px 0;
+}
+
+.textfield .MuiTextField-root{
+ width: 80%; 
+}
+
+.textfield .MuiButton-root{
+  width: 80%;
+  border-radius: 50px;
+  background-color: #5F35F5;
+  font-style: normal;
+}
+
+.textfield .MuiButton-root:hover{
+  background-color: white;
+  color: #5F35F5;
+}
+
+.textfield .footer{
+  font-size: 12px;
+  text-align: center;
+  
+}
+
+.sign{
+  color: red;
+}
+
+.googleImg{
+  width: 30%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/*==================================================================================================== 
+                    Registration Part End
+====================================================================================================*/
