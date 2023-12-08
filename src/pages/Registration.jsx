@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import {Grid,TextField, Button} from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import regImg from '../assets/registration.png'
 import Headingforreglog from '../components/Headingforreglog';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -8,10 +10,12 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 let initvalues = {
   email : '',
   fullName: '',
-  password: ''
+  password: '',
+  loading : false
 }
 const Registration = () => {
   const auth = getAuth();
+  let Navigate = useNavigate()
 
   let [values, setValues] = useState(initvalues)
   let handleValues = (e)=>{
@@ -22,8 +26,22 @@ const Registration = () => {
   }
 
   let handleSubmit = ()=>{
-    let {email, fullName, password} = values
-    createUserWithEmailAndPassword(auth, email, password)
+  let {email, fullName, password} = values;
+  setValues({
+    ...values,
+    loading: true
+})
+   
+    createUserWithEmailAndPassword(auth, email, password).then((user)=>{
+      setValues({
+        ...values,
+        email: '',
+        fullName: '',
+        password: '',
+        loading: false
+    })
+    Navigate('/login')
+    })
   }
   return (
     <>
@@ -35,16 +53,24 @@ const Registration = () => {
           <p>Free register and you can enjoy it</p>
           </div>
           <div className='textfield'>
-            <TextField onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
+            <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
           </div>
           <div className='textfield'>
-            <TextField onChange={handleValues} name='fullName' id="outlined-basic" label="Ful name" variant="outlined" placeholder='Urmi Riddhi'/>
+            <TextField value={values.fullName} onChange={handleValues} name='fullName' id="outlined-basic" label="Ful name" variant="outlined" placeholder='Urmi Riddhi'/>
           </div>
           <div className='textfield'>
-            <TextField onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
+            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
           </div>
           <div className='textfield'>
-            <Button onClick={handleSubmit} variant="contained">Sign up</Button>
+          {values.loading
+          ?
+          <LoadingButton loading variant="outlined">
+              Submit
+          </LoadingButton>
+          :
+          <Button onClick={handleSubmit} variant="contained">Sign up</Button>
+          }
+            
           </div>
           <div className='textfield'>
             <p className='footer'>Already have an account? <span className='sign'>sign in</span></p>
