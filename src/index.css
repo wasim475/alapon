@@ -58,6 +58,7 @@ transform: translateY(-50%);
 
 .sign{
   color: red;
+  cursor: pointer;
 }
 
 .googleImg{

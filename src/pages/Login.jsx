@@ -4,6 +4,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import regImg from '../assets/registration.png'
 import googleImg from '../assets/google.png'
 import Headingforreglog from '../components/Headingforreglog';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 
 let initvalues = {
   email : '',
@@ -11,6 +13,7 @@ let initvalues = {
   loading : false
 }
 const Login = () => {
+  const auth = getAuth();
   let [values, setValues]= useState(initvalues)
   let handleValues = (e)=>{
     setValues({
@@ -19,6 +22,21 @@ const Login = () => {
 
     })
   }
+let handleSubmit = ()=>{
+  let {email, password} = values;
+  setValues({
+    loading: true
+  })
+  signInWithEmailAndPassword(auth, email, password).then((userCredintial)=>{
+      setValues({
+        ...values,
+        email: '',
+        password: '',
+        loading: false
+      })
+  })
+
+}
   return (
     <>
     <Grid container spacing={2}>
@@ -32,13 +50,20 @@ const Login = () => {
             <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
           </div>
           <div className='textfield'>
-            <TextField value={values.password} onChange={handleValues} name='password ' id="outlined-basic" label="Password" variant="outlined" type='password' />
+            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
           </div>
           <div className='textfield'>
-            <LoadingButton loading variant="outlined">
-                Submit
-            </LoadingButton>
-            <Button variant="contained">Login to Continue</Button>
+          {
+            values.loading
+            ?
+              <LoadingButton loading variant="outlined">
+                  Submit
+              </LoadingButton>
+            :
+              <Button onClick={handleSubmit} variant="contained">Login to Continue</Button>
+          }
+            
+            
           </div>
           <div className='textfield'>
             <p className='footer'>Don’t have an account ? <span className='sign'>Sign up</span></p>
