@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import {Grid,TextField, Button} from '@mui/material';
+import {Grid,TextField, Button, Alert} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import regImg from '../assets/registration.png'
 import googleImg from '../assets/google.png'
 import Headingforreglog from '../components/Headingforreglog';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from "firebase/auth";
+
+
 
 
 let initvalues = {
@@ -13,7 +16,9 @@ let initvalues = {
   loading : false
 }
 const Login = () => {
-  const auth = getAuth();
+
+  const auth = getAuth()
+  const provider = new GoogleAuthProvider();
   let [values, setValues]= useState(initvalues)
   let handleValues = (e)=>{
     setValues({
@@ -27,15 +32,21 @@ let handleSubmit = ()=>{
   setValues({
     loading: true
   })
-  signInWithEmailAndPassword(auth, email, password).then((userCredintial)=>{
+  signInWithEmailAndPassword(auth, email, password).then((user)=>{
       setValues({
         ...values,
         email: '',
         password: '',
         loading: false
       })
-  })
 
+    })
+
+}
+let handleGoogleLogin = ()=>{
+  signInWithPopup(auth, provider).then((result) => {
+    console.log(result);
+  })
 }
   return (
     <>
@@ -44,7 +55,7 @@ let handleSubmit = ()=>{
          <div className='regContainer'>
           <div className='regInfo'>
           <Headingforreglog className='cssforReg' Title='Login to your account!'/>
-          <img className='googleImg' src={googleImg}/>
+          <img onClick={handleGoogleLogin} className='googleImg' src={googleImg}/>
           </div>
           <div className='textfield'>
             <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
@@ -53,6 +64,11 @@ let handleSubmit = ()=>{
             <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
           </div>
           <div className='textfield'>
+          <div className='textfield'>
+            <Alert severity="info">
+              Already have an account? <Link to="/"><span className='loginUp'>Registration</span></Link>
+            </Alert>
+          </div>
           {
             values.loading
             ?
@@ -66,7 +82,7 @@ let handleSubmit = ()=>{
             
           </div>
           <div className='textfield'>
-            <p className='footer'>Don’t have an account ? <span className='sign'>Sign up</span></p>
+            <p className='footer'> <span className='sign'>Sign up</span></p>
           </div>
 
          </div>
