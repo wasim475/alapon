@@ -5,7 +5,9 @@ import regImg from '../assets/registration.png'
 import googleImg from '../assets/google.png'
 import Headingforreglog from '../components/Headingforreglog';
 import { Link } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -13,10 +15,11 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 let initvalues = {
   email : '',
   password: '',
+  eye: false,
   loading : false
 }
 const Login = () => {
-
+  let navigate = useNavigate()
   const auth = getAuth()
   const provider = new GoogleAuthProvider();
   let [values, setValues]= useState(initvalues)
@@ -39,7 +42,7 @@ let handleSubmit = ()=>{
         password: '',
         loading: false
       })
-
+      navigate('/home')
     })
 
 }
@@ -61,7 +64,15 @@ let handleGoogleLogin = ()=>{
             <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
           </div>
           <div className='textfield'>
-            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
+            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type={values.eye? 'text': 'password'} />
+              <div onClick={()=> setValues({...values, eye: !values.eye})}>
+                {values.eye
+                ?
+                <FaEyeSlash />
+                :
+                <FaEye />
+                }
+              </div>
           </div>
           <div className='textfield'>
           <div className='textfield'>
@@ -81,8 +92,9 @@ let handleGoogleLogin = ()=>{
             
             
           </div>
-          <div className='textfield'>
-            <p className='footer'> <span className='sign'>Sign up</span></p>
+
+          <div>
+          <Alert severity="error">Forgot password? <Link to='/forgotpassword'>Reset</Link></Alert>
           </div>
 
          </div>

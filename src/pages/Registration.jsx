@@ -5,13 +5,16 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import regImg from '../assets/registration.png'
 import Headingforreglog from '../components/Headingforreglog';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 let initvalues = {
   email : '',
   fullName: '',
   password: '',
-  loading : false
+  error: '',
+  loading : false,
+  eye: false
 }
 const Registration = () => {
   const auth = getAuth();
@@ -27,6 +30,27 @@ const Registration = () => {
 
   let handleSubmit = ()=>{
   let {email, fullName, password} = values;
+  if(!email){
+    setValues({
+      ...values,
+      error: 'Please enter an email.'
+    })
+    return
+  }
+  if(!fullName){
+    setValues({
+      ...values,
+      error: 'Please enter name.'
+    })
+    return
+  }
+  if(!password){
+    setValues({
+      ...values,
+      error:'Please enter password.'
+    })
+    return
+  }
   setValues({
     ...values,
     loading: true
@@ -38,6 +62,7 @@ const Registration = () => {
         email: '',
         fullName: '',
         password: '',
+        error: '',
         loading: false
     })
     sendEmailVerification(auth.currentUser)
@@ -47,8 +72,10 @@ const Registration = () => {
     Navigate('/login')
     })
   }
+  
   return (
     <>
+
     <Grid container spacing={2}>
         <Grid item xs={6}>
          <div className='regContainer'>
@@ -58,12 +85,23 @@ const Registration = () => {
           </div>
           <div className='textfield'>
             <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
+            {values.error.includes('email') && <Alert severity="error">{values.error}</Alert>}
           </div>
           <div className='textfield'>
             <TextField value={values.fullName} onChange={handleValues} name='fullName' id="outlined-basic" label="Ful name" variant="outlined" placeholder='Urmi Riddhi'/>
+            {values.error.includes('name') && <Alert severity="error">{values.error}</Alert>}
           </div>
           <div className='textfield'>
-            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type='password' />
+            <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type={values.eye?'text':'password'} />
+            {values.error.includes('password') && <Alert severity="error">{values.error}</Alert>}
+            <div onClick={()=> setValues({...values, eye: !values.eye})}>
+                {values.eye
+                ?
+                <FaEyeSlash />
+                :
+                <FaEye />
+                }
+              </div>
           </div>
           <div className='textfield'>
           <div className='textfield'>
@@ -73,9 +111,11 @@ const Registration = () => {
           </div>
           {values.loading
           ?
-          <LoadingButton loading variant="outlined">
-              Submit
-          </LoadingButton>
+          <div> 
+            <LoadingButton loading variant="outlined">
+                Submit
+            </LoadingButton>
+          </div>
           :
           <Button onClick={handleSubmit} variant="contained">Sign up</Button>
           }
