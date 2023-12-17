@@ -9,6 +9,9 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -19,6 +22,10 @@ let initvalues = {
   loading : false
 }
 const Login = () => {
+
+  const notify = () => toast("Wow so easy!");
+
+  let [error, setError] = useState('')
   let navigate = useNavigate()
   const auth = getAuth()
   const provider = new GoogleAuthProvider();
@@ -32,6 +39,14 @@ const Login = () => {
   }
 let handleSubmit = ()=>{
   let {email, password} = values;
+  // if(!email){
+  //  setError('Enter your valid email.')
+  //  return
+  // }
+  // if(!password){
+  //  setError('Enter your valid password.')
+  //   return
+  // }
   setValues({
     loading: true
   })
@@ -43,12 +58,23 @@ let handleSubmit = ()=>{
         loading: false
       })
       navigate('/home')
-    })
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setError(errorCode)
+      console.log(errorMessage);
+      setValues({
+        ...values,
+        password: '',
+        loading: false,
+      })
+      
+    });
 
 }
 let handleGoogleLogin = ()=>{
   signInWithPopup(auth, provider).then((result) => {
-    console.log(result);
+    
   })
 }
   return (
@@ -62,9 +88,14 @@ let handleGoogleLogin = ()=>{
           </div>
           <div className='textfield'>
             <TextField value={values.email} onChange={handleValues} name='email' id="outlined-basic" label="Email Address" variant="outlined" type='email' placeholder='urmi21riddhi@example.com'/>
+            {error.includes('auth/invalid-email') && <Alert severity="error">{error.includes('auth/invalid-email')&& 'User not found'}</Alert>}
           </div>
           <div className='textfield'>
             <TextField value={values.password} onChange={handleValues} name='password' id="outlined-basic" label="Password" variant="outlined" type={values.eye? 'text': 'password'} />
+
+            {error.includes('auth/invalid-credential') && <Alert severity="error">{error.includes('auth/invalid-credential')&& 'Invalid password'}</Alert>}
+            
+
               <div onClick={()=> setValues({...values, eye: !values.eye})}>
                 {values.eye
                 ?
@@ -87,7 +118,12 @@ let handleGoogleLogin = ()=>{
                   Submit
               </LoadingButton>
             :
-              <Button onClick={handleSubmit} variant="contained">Login to Continue</Button>
+              <>
+                <Button onClick={handleSubmit} variant="contained">Login to Continue</Button>
+                <Button onClick={notify} variant="contained">asd</Button>
+                <ToastContainer />
+              </>
+              
           }
             
             
