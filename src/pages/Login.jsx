@@ -9,7 +9,7 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -23,7 +23,7 @@ let initvalues = {
 }
 const Login = () => {
 
-  const notify = () => toast("Wow so easy!");
+  const notify = (msg) => toast(msg);
 
   let [error, setError] = useState('')
   let navigate = useNavigate()
@@ -57,12 +57,12 @@ let handleSubmit = ()=>{
         password: '',
         loading: false
       })
-      navigate('/home')
+      navigate('/alapon/home')
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       setError(errorCode)
-      console.log(errorMessage);
+      notify(errorCode)
       setValues({
         ...values,
         password: '',
@@ -119,9 +119,7 @@ let handleGoogleLogin = ()=>{
               </LoadingButton>
             :
               <>
-                <Button onClick={handleSubmit} variant="contained">Login to Continue</Button>
-                <Button onClick={notify} variant="contained">asd</Button>
-                <ToastContainer />
+                <Button onClick={handleSubmit} variant="contained">Login to Continue</Button>   
               </>
               
           }
