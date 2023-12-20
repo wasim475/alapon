@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useLocation  } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import profile from '../assets/profile.png'
 import { IoMdHome ,IoMdNotificationsOutline  } from "react-icons/io";
@@ -8,6 +8,8 @@ import { AiTwotoneMessage  } from "react-icons/ai";
 import { TbLogout } from "react-icons/tb";
 
 const RootLayout = () => {
+    let location = useLocation();
+    console.log(location.pathname);
   return (
     <>
     <Grid container spacing={2}>
@@ -17,26 +19,26 @@ const RootLayout = () => {
                 <img className='profilePic' src={profile}/>
                 <ul>
                     <li>
-                        <Link to='/alapon/home'>
-                            <IoMdHome className='icons' />
+                        <Link to='/alapon/home' className={location.pathname== '/alapon/home'? 'active': 'icons'}>
+                            <IoMdHome  />
                         </Link>
                     </li>
 
                     <li>
-                        <Link to='/alapon/msg'>
-                            <AiTwotoneMessage className='icons' />
+                        <Link to='/alapon/msg' className={location.pathname== '/alapon/msg'? 'active': 'icons'}>
+                            <AiTwotoneMessage />
                         </Link>
                     </li>
 
                     <li>
-                        <Link to='/alapon/notifications'>
-                         <IoMdNotificationsOutline className='icons'/>
+                        <Link to='/alapon/notifications' className={location.pathname== '/alapon/notifications'? 'active': 'icons'}>
+                         <IoMdNotificationsOutline/>
                         </Link>
                     </li>
 
                     <li>
-                        <Link to='/alapon/settings'>
-                             <IoSettingsOutline className='icons'/>
+                        <Link to='/alapon/settings' className={location.pathname== '/alapon/settings'? 'active': 'icons'}>
+                             <IoSettingsOutline/>
                         </Link>
                     </li>
 

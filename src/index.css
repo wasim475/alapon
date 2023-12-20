@@ -117,7 +117,6 @@ transform: translateY(-50%);
 .Navbar{
   width: 100%;
   height: 100vh;
- background-color: red;
  display: flex;
  justify-content: center;
 }
@@ -140,11 +139,73 @@ transform: translateY(-50%);
   justify-content: center;
 }
 .Navbar .navContianer ul li .icons{
+  display: inline-block;
   color: white;
   font-size: 40px;
   margin: 25px 0;
   
 }
+.Navbar .navContianer ul li .active{
+  display: inline-block;
+  font-size: 40px;
+  margin: 25px 0;
+  position: relative;
+  z-index: 1;
+  
+}
+.Navbar .navContianer ul li .active:after{
+  position: absolute;
+  content: '';
+  position: absolute;
+  width: 72px;
+  height: 100%;
+  top: -5px;
+  left: -6px;
+  background: #fff;
+  z-index: -1;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+ul li .active::before {
+  position: absolute;
+  content: '';
+  width: 7px;
+  height: 101%;
+  top: -5px;
+  left: 147%;
+  background: #5F35F5;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+
 /*==================================================================================================== 
                     Navbar Part End
+====================================================================================================*/
+
+/*==================================================================================================== 
+                    home>Group Part Start
+====================================================================================================*/
+.box{
+  width: 100%;
+  height: 290px;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 18px 2px rgba(207,190,190,0.81);
+-webkit-box-shadow: 0px 3px 18px 2px rgba(207,190,190,0.81);
+-moz-box-shadow: 0px 3px 18px 2px rgba(207,190,190,0.81);
+overflow-y: scroll;
+}
+.box .GroupList{
+  display: flex;
+  column-gap: 40px;
+  margin: 20px 0;
+}
+
+.box .GroupList .GpImg{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+/*==================================================================================================== 
+                    home>Group  Part End
 ====================================================================================================*/

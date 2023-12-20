@@ -1,7 +1,10 @@
-import { Button } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import React from 'react'
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import Group from '../components/Group';
+import Friend from '../components/Friend';
+import UserList from '../components/UserList';
 
 
 const Home = () => {
@@ -18,7 +21,19 @@ const Home = () => {
   }
   return (
     <>
-      <Button onClick={handleLogout} variant='contained'>Log Out</Button>
+      {/* <Button onClick={handleLogout} variant='contained'>Log Out</Button> */}
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
+          <Group/>
+        </Grid>
+        <Grid item xs={4}>
+          <Friend/>
+        </Grid>
+        <Grid item xs={4}>
+          <UserList/>
+        </Grid>
+      
+      </Grid>
     </>
   )
 }
