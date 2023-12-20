@@ -3,7 +3,9 @@ import React from 'react'
 const Friend = () => {
   return (
     <>
-        <div className='box'></div>
+        <div className='box'>
+          
+        </div>
     </>
   )
 }

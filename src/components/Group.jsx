@@ -8,7 +8,10 @@ const Group = () => {
   return (
     <>
         <div className='box'>
-            <h3>Group List</h3>
+            <div className='Gtitle'>
+                <h3>Group List</h3>
+                <Button size="small" variant="contained">Create Group</Button>
+            </div>
             <div className='GroupList'>
                 <div className='GpImg'>
                     <img src={Gp1}/>

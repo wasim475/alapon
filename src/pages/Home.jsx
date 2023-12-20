@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Group from '../components/Group';
 import Friend from '../components/Friend';
 import UserList from '../components/UserList';
+import FriendRequest from '../components/FriendRequest';
 
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
       <Grid container spacing={3}>
         <Grid item xs={4}>
           <Group/>
+          <FriendRequest/>
         </Grid>
         <Grid item xs={4}>
           <Friend/>
