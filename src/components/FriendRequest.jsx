@@ -17,50 +17,54 @@ const FriendRequest = () => {
                 <img src={fq1}/>
             </div>
             <div className='details'>
-                <h4>Tejeshwini C</h4>
+                <h4>Tejeshwini</h4>
                 <p>hii</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq2}/>
             </div>
             <div className='details'>
-                <h4>Friends Forever</h4>
-                <p>Good to see you.</p>
+                <h4>Kiran</h4>
+                <p>cool guy.</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq3}/>
             </div>
             <div className='details'>
-                <h4>Crazy Cousins</h4>
-                <p>What plans today?</p>
+                <h4>Swathi</h4>
+                <p>Sure!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq4}/>
             </div>
             <div className='details'>
-                <h4>Friends Reunion</h4>
+                <h4>Raghav</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -68,11 +72,12 @@ const FriendRequest = () => {
                 <h4>Friends Reunion</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -80,11 +85,12 @@ const FriendRequest = () => {
                 <h4>Tejeshwini C</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -92,11 +98,12 @@ const FriendRequest = () => {
                 <h4>Friends Reunion</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -104,11 +111,12 @@ const FriendRequest = () => {
                 <h4>Friends Reunion</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -116,11 +124,12 @@ const FriendRequest = () => {
                 <h4>Friends Reunion</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
-        <div className='GroupList'>
+        <div className='FQList'>
             <div className='GpImg'>
                 <img src={fq1}/>
             </div>
@@ -128,8 +137,9 @@ const FriendRequest = () => {
                 <h4>Friends Reunion</h4>
                 <p>Hi Guys, Wassup!</p>
             </div>
-            <div className='gButton'>
-            <Button size="small" variant="contained">Join</Button>
+            <div className='FQButton'>
+            <Button size="small" variant="contained">Accept</Button>
+            <Button size="small" variant="contained">Delete</Button>
             </div>
         </div>
     </div>

@@ -6,6 +6,8 @@ import Group from '../components/Group';
 import Friend from '../components/Friend';
 import UserList from '../components/UserList';
 import FriendRequest from '../components/FriendRequest';
+import MyGroup from '../components/MyGroup';
+import BlockList from '../components/BlockList';
 
 
 const Home = () => {
@@ -30,9 +32,11 @@ const Home = () => {
         </Grid>
         <Grid item xs={4}>
           <Friend/>
+          <MyGroup/>
         </Grid>
         <Grid item xs={4}>
           <UserList/>
+          <BlockList/>
         </Grid>
       
       </Grid>

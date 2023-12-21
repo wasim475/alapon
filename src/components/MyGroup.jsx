@@ -4,13 +4,12 @@ import fq2 from '../assets/FQPic/fq2.png'
 import fq3 from '../assets/FQPic/fq3.png'
 import fq4 from '../assets/FQPic/fq4.png'
 
-
-const Friend = () => {
+const MyGroup = () => {
   return (
     <>
         <div className='box'>
         <div className='Ftitle'>
-                <h3>Friends</h3>
+                <h3>My Groups</h3>
             </div>
             <div className='FList'>
                 <div className='GpImg'>
@@ -77,4 +76,4 @@ const Friend = () => {
   )
 }
 
-export default Friend
+export default MyGroup
